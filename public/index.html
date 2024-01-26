@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <title>SpaceX Launches</title>
+</head>
+
+<body>
+    <div id="filters">
+        <label for="launchYear">Launch Year:</label>
+        <input type="number" id="launchYear" min="2006" max="2024">
+
+        <label for="launchSuccess">Launch Success:</label>
+        <select id="launchSuccess">
+            <option value="">All</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+
+        <label for="searchCategory">Search Category:</label>
+        <select id="searchCategory">
+            <option value="mission_name">Mission Name</option>
+            <option value="rocket_name">Rocket Name</option>
+            <!-- Add more options as needed -->
+        </select>
+
+        <label for="searchInput">Search:</label>
+        <input type="text" id="searchInput">
+
+        <button onclick="applyFilters()">Apply Filters</button>
+    </div>
+
+    <div id="result"></div>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
