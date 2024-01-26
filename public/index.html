@@ -2,14 +2,20 @@
 <html lang="en">
 
 <head>
+    <!-- Meta tags for character set and viewport -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Link to the external style.css file and an empty favicon -->
     <link rel="stylesheet" type="text/css" href="./style.css">
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+    <!-- Title of the webpage -->
     <title>SpaceX Launches</title>
 </head>
 
 <body>
+    <!-- Filter section with input fields and apply button -->
     <div id="filters">
         <label for="launchYear">Launch Year:</label>
         <input type="number" id="launchYear" min="2006" max="2024">
@@ -25,7 +31,7 @@
         <select id="searchCategory">
             <option value="mission_name">Mission Name</option>
             <option value="rocket_name">Rocket Name</option>
-            <!-- Add more options as needed -->
+            <!-- We can add more options here -->
         </select>
 
         <label for="searchInput">Search:</label>
@@ -34,9 +40,11 @@
         <button onclick="applyFilters()">Apply Filters</button>
     </div>
 
+    <!-- Container for displaying the filtered results -->
     <div id="result"></div>
-    <script src="script.js"></script>
 
+    <!-- Link to the external script.js file -->
+    <script src="script.js"></script>
 </body>
 
 </html>

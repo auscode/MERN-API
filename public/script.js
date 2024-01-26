@@ -1,7 +1,9 @@
+// Importing the QueryString library
 const QueryString = require("qs");
 
 // Function to generate HTML table dynamically
 function generateTable(data) {
+  // Creating a table element with header row
   const table = document.createElement("table");
   table.innerHTML = `
     <tr>
@@ -15,6 +17,7 @@ function generateTable(data) {
     </tr>
   `;
 
+  // Populating the table with launch data
   data.forEach((launch) => {
     const row = table.insertRow();
     row.innerHTML = `
@@ -33,47 +36,35 @@ function generateTable(data) {
   return table.outerHTML;
 }
 
+// Function to apply filters and fetch data from the server
 async function applyFilters() {
+  // Retrieving filter values from the DOM
   const launchYear = document.getElementById("launchYear").value;
   const launchSuccess = document.getElementById("launchSuccess").value;
   const searchCategory = document.getElementById("searchCategory").value;
   const searchInput = document.getElementById("searchInput").value;
-  console.log("SEARCH INPUT DATA");
-  console.log(searchInput);
 
+  // Creating an object with filter values
   const filters = {
     launch_year: launchYear,
     launch_success: launchSuccess,
     [searchCategory]: searchInput,
   };
-  console.log("data::FILTER DATA");
-  console.log(filters);
 
+  // Generating a query string from the filter object
   const queryString = Object.entries(filters)
     .filter(([key, value]) => value !== "")
     .map(([key, value]) => `${key}=${value}`)
     .join("&");
-  console.log("QUERY::QUERY DATA");
 
   try {
+    // Fetching data from the server based on filters
     const response = await fetch(
       `http://127.0.0.1:3000/api/launches?${queryString}`
     );
     const data = await response.json();
-    console.log("response_data::FETCHED_DATA");
-    console.log(data);
 
-    const expirationTime = Date.now() + 24 * 60 * 60 * 1000; // 24 hours
-    localStorage.setItem("myData", JSON.stringify({ data, expirationTime }));
-
-    // Check and remove expired items
-    const storedData = JSON.parse(localStorage.getItem("myData"));
-    if (storedData && storedData.expirationTime < Date.now()) {
-      // Remove the item from local storage
-      localStorage.removeItem("myData");
-    }
-
-    // Render the results in a table
+    // Rendering the results in the result container
     const resultContainer = document.getElementById("result");
     resultContainer.innerHTML =
       data.length === 0 ? "No matching launches found." : generateTable(data);

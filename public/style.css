@@ -1,17 +1,21 @@
+/* Styling for the body and font */
 body {
   font-family: Arial, sans-serif;
 }
 
+/* Styling for the filters section */
 #filters {
   margin-bottom: 20px;
 }
 
+/* Styling for labels, input, and select elements */
 label,
 input,
 select {
   margin-right: 10px;
 }
 
+/* Styling for the button */
 button {
   cursor: pointer;
 }
